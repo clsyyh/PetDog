@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	padding:0px;
+	margin:0px;
+	background: url("../images/la.jpg") no-repeat;
+	background-size: 100%; 
+}
+#all{
+	width:1903px;
+	height:885px;
+}
+#middle{
+	height: 40%;
+	width: 40%;
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+	margin-top:300px;
+	margin-left:550px;
+}
+#left{ 
+	width:40%;
+}
+#left img{
+	width: 100%;
+	height: 351px;
+}
+#right{ 
+	width:59%;  
+}
+#login,#reg{
+	height: 350px;
+	width: 400px;
+	margin-top: 105px;	
+	box-shadow:0 3px 3px rgba(21,62,78,0.8);
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#login h2,#reg h2{
+	font-family: cursive;
+	color:white;
+	font-size: 30px;
+	margin-left: 125px;
+	padding-top: 15px;
+	margin-bottom: 10px;
+}
+hr{
+	height:1px;
+	border:none;
+	border-top:2px solid white;
+	margin-bottom:20px;
+}
+label{
+	font-family: monospace;
+	font-size: 16px;
+	margin-left: 30px;
+	color:white;
+}
+input[type="text"] {
+	font-family:"微软雅黑";
+    background: white;
+    border: solid 1px #ccc;
+	border-radius:30px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 17px;
+    padding-left:0px;
+    width: 220px;
+	display:inline-block;
+	vertical-align:top;
+	margin-top:15px;
+	margin-bottom:10px;
+	margin-left:30px;
+	margin-right:30px;
+}
+input[type="radio"]{
+	margin-top: 15px;
+	margin-bottom: 6px;
+	margin-left: 38px;
+	color:white;
+}
+.zi{
+	color:white;
+}
+button {
+	font-family:"微软雅黑";
+    background: black;
+    border: solid 1px #ccc;
+	border-radius:30px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 19px;
+    padding-left: 0px;
+    width: 200px;
+	display:inline-block;
+	vertical-align:top;
+	margin-top:15px;
+	margin-bottom:10px;
+	margin-left:95px;
+	margin-right:30px;
+	color: white;
+	cursor: pointer;
+}
+#right ul li{
+	display:inline-block;
+	vertical-align:top;
+	margin-top:15px;
+}
+#right ul li:last-child{
+	float:right;
+	padding-right:30px;
+}
+#right ul li a{
+	text-decoration: none;
+	font-family: monospace;
+	font-size: 14px;
+	color: white;
+}
+ a{
+	text-decoration: none;
+	font-family: monospace;
+	font-size: 14px;
+	color: white;
+	margin-left:30px;
+	margin-top:30px;
+}
+.regButton{
+	margin-top:50px;
+}

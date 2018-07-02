@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.PetDog.dao.LoginDao">
+    <select id="findByLoginnameAndPassword" parameterType="String" resultType="Login">
+        select *
+        FROM login
+        WHERE loginname=#{0} and password=#{1};
+    </select>
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="loginname!=null">
+                loginname,
+            </if>
+            <if test="password!=null">
+                password,
+            </if>
+        </trim>
+    </sql>
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="loginname!=null">
+                #{loginname},
+            </if>
+            <if test="password!=null">
+                #{password},
+            </if>
+        </trim>
+    </sql>
+    <insert id="addLogin" parameterType="Login">
+        INSERT INTO login(<include refid="key"/>)
+        VALUES (<include refid="value"/>)
+    </insert>
+    <update id="updatePwd" parameterType="Login">
+        UPDATE login
+        <set>
+            <if test="password!=null">password=#{password},</if>
+        </set>
+        WHERE id=#{id};
+    </update>
+</mapper>

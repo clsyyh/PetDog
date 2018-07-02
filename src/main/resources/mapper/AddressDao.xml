@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.PetDog.dao.AddressDao">
+    <select id="findByBuyerId" resultType="Address">
+        SELECT *
+        FROM address
+        WHERE buyer_id=#{buyerId}
+    </select>
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="buyerId!=null">
+                buyer_id,
+            </if>
+            <if test="area!=null">
+                area,
+            </if>
+            <if test="detail!=null">
+                detail,
+            </if>
+            <if test="tel!=null">
+                tel,
+            </if>
+        </trim>
+    </sql>
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="buyerId!=null">
+                #{buyerId},
+            </if>
+            <if test="area!=null">
+                #{area},
+            </if>
+            <if test="detail!=null">
+                #{detail},
+            </if>
+            <if test="tel!=null">
+                #{tel},
+            </if>
+        </trim>
+    </sql>
+    <insert id="addAddress" parameterType="Address">
+        INSERT INTO address(<include refid="key"/>)
+        VALUES (<include refid="value"/>)
+    </insert>
+</mapper>

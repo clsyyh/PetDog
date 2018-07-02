@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.PetDog.dao.OrderDao">
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="number!=null">
+                number,
+            </if>
+            <if test="deliverWay!=null">
+                deliver_way,
+            </if>
+            <if test="deliverPrice!=null">
+                deliver_price,
+            </if>
+            <if test="sumprice!=null">
+                sumprice,
+            </if>
+            <if test="payWay!=null">
+                pay_way,
+            </if>
+            <if test="tel!=null">
+                tel,
+            </if>
+            <if test="shad!=null">
+                shad,
+            </if>
+
+                shr,
+
+            <if test="dog!=null">
+                dog_id,
+            </if>
+            <if test="buyerId!=null">
+                buyer_id,
+            </if>
+            <if test="sellerId!=null">
+                seller_id,
+            </if>
+        </trim>
+    </sql>
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="number!=null">
+                #{number},
+            </if>
+            <if test="deliverWay!=null">
+                #{deliverWay},
+            </if>
+            <if test="deliverPrice!=null">
+                #{deliverPrice},
+            </if>
+            <if test="sumprice!=null">
+                #{sumprice},
+            </if>
+            <if test="payWay!=null">
+                #{payWay},
+            </if>
+            <if test="tel!=null">
+                #{tel},
+            </if>
+            <if test="shad!=null">
+                #{shad},
+            </if>
+
+                #{shr},
+
+            <if test="dog!=null">
+                #{dog.id},
+            </if>
+            <if test="buyerId!=null">
+                #{buyerId},
+            </if>
+            <if test="sellerId!=null">
+                #{sellerId},
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="addOrder" parameterType="DogOrder">
+        INSERT INTO dogorder(<include refid="key"/>)
+        VALUES (<include refid="value"/>);
+    </insert>
+    <select id="findAllOrders"  resultMap="OrderResultMap">
+        SELECT *
+        FROM dogOrder;
+    </select>
+    <select id="findOrdersByBuyerId" resultMap="OrderResultMap">
+        select * from dogOrder
+        where buyer_id=#{buyerId};
+    </select>
+    <select id="findOrdersBySellerId" resultMap="OrderResultMap">
+        select * from dogOrder
+        where seller_id=#{sellerId};
+    </select>
+    <select id="findOrderByBuyerIdAndStatus" resultMap="OrderResultMap" parameterType="Integer">
+        select * from dogorder
+        where buyer_id=#{0} and status=#{1};
+    </select>
+    <select id="findOrderBySellerIdAndStatus" resultMap="OrderResultMap" parameterType="Integer">
+        select * from dogorder
+        where seller_id=#{0} and status=#{1};
+    </select>
+    <resultMap id="OrderResultMap" type="DogOrder">
+        <id column="id" property="id"/>
+        <result property="number" column="number"/>
+        <result column="deliver_way" property="deliverWay"/>
+        <result property="deliverPrice" column="delicer_price"/>
+        <result property="sumprice" column="sumprice"/>
+        <result column="pay_way" property="payWay"/>
+        <result property="createDate" column="create_date"/>
+        <result column="status" property="status"/>
+        <result column="shr" property="shr"/>
+        <result property="tel" column="tel"/>
+        <result property="shad" column="shad"/>
+        <result property="buyerId" column="buyer_id"/>
+        <result column="seller_id" property="sellerId"/>
+        <association property="dog"  javaType="Dog"
+                     column="dog_id" select="org.PetDog.dao.DogDao.findDogById"
+                     fetchType="eager"></association>
+    </resultMap>
+    <update id="updateStatusById">
+        UPDATE dogorder
+        SET status=1
+        WHERE id=#{id};
+    </update>
+</mapper>
